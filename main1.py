@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from reactpy.backend.fastapi import configure
 from reactpy import component, event, html, use_state
@@ -22,6 +21,7 @@ def MyCrud():
         login(newtodo)  # function call to login function using the submitted data
 
     # looping data from alltodo to show on web
+
 
     list = [
         html.li(
@@ -72,3 +72,22 @@ def MyCrud():
 
 
 app = FastAPI()
+
+from pymongo import MongoClient
+
+
+#copy and pasting the mongodb URI
+uri="mongodb+srv://Admin1:py2023@reactpy-task01.sqypcdy.mongodb.net/" 
+
+client=MongoClient(uri)
+#defining the db name
+db=client["Reactpy_Task01"]
+collection=db["Reactpy-Task01"]
+
+#checking the connection
+try:
+    client.admin.command("ping")
+    print("successfully connected Mongodb")
+except Exception as e:
+    print(e)
+    
